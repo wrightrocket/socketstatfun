@@ -42,3 +42,14 @@ UNCONN 0       0           192.168.122.1:53            0.0.0.0:*      ino:50413 
 UNCONN 0       0           127.0.0.53%lo:53            0.0.0.0:*      uid:101 ino:20773 sk:556 &lt;-&gt;
 </pre>
 
+## Disabling the Function
+If you have sourced the ss function into your environment, it should be visible by running set, and paging through the output.
+
+* set | grep -A ^ss
+
+To disable the function you can unset the name of the function:
+
+* unset ss
+
+
+

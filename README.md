@@ -51,5 +51,31 @@ To disable the function you can unset the name of the function:
 
 * unset ss
 
-
+## Example of Enabling and Disabling ss Function
+<pre><font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ source ss.fun2
+<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ set | grep -A 20 ^ss
+<font color="#EF2929"><b>ss</b></font> () 
+{ 
+    if test -z &quot;$1&quot;; then
+        env ss;
+        return 0;
+    fi;
+    A1=$(echo &quot;$1&quot; | tr -d &apos;-&apos;);
+    if test &quot;$1&quot; != &quot;$A1&quot;; then
+        env ss &quot;$@&quot;;
+        return 0;
+    else
+        if test &quot;$1&quot; == &quot;state&quot;; then
+            env ss &quot;$@&quot;;
+            return 0;
+        else
+            shift;
+            env ss &quot;$@&quot; &quot;( sport = :$A1 or dport = :$A1 )&quot;;
+        fi;
+    fi
+}
+<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ 
+<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ unset ss
+<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ set | grep -A 20 ^ss
+</pre>
 

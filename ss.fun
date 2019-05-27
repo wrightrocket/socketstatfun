@@ -4,9 +4,11 @@ ss () {
 # Usage: ss <sport|dport>
 # To filter for all source and destination ports 22
 # Examples: 
+#   
 #   ss 22
 #   ss 80 -t
 #   ss 53 -ulpn
+#   ss 22 state established
 # by wrightrocket <wright.keith@gmail.com>
         [ -z "$1" ] && env ss && return 0  # if nothing passed run ss
 	# return from function if there is no arguments

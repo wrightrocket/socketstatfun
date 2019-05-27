@@ -17,7 +17,7 @@ ss () {
 	[ "$1" == "state" ] && env ss "$@" && return 0 
 	# run normal ss command if it starts with "state"
 
-	[ "$1" == "$A1" ] && shift && env ss "$1" "( sport = :$A1 or dport = :$A1 )" && return 0 
+	[ "$1" == "$A1" ] && shift && env ss "$@" "( sport = :$A1 or dport = :$A1 )" && return 0 
 	# [ "$1" == "$A1" ] && env ss -tulpn "( sport = :$1 or dport = :$1 )" && return 0 
 	# echo run special ss command to show tcp/udp listening source or destination ports
 	# when first argument to ss 

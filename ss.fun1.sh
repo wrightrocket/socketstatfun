@@ -19,7 +19,7 @@
 ss () {
 	if ! test -n "$SSOPT"
 	then # if the SSOPTDEF variable is not set assign the follow value
-		SSOPT="-nameo" # default options when using a naked port filter
+		SSOPT="-ma" # default options when using a naked port filter
 	fi
 
 	if ! test -n "$SSSTATE"

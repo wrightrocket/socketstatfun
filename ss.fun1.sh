@@ -35,9 +35,9 @@ ss () {
 		# return from function if there is no arguments
 	fi
 
-	A1=$(echo "$1" | tr -d '-') # delete any - characters in $1 and store in $A1
+	SSPORT=$(echo "$1" | tr -d '-') # delete any - characters in $1 and store in $SSPORT
 
-	if test "$1" != "$A1" # if $1 is not the same as $1 with '-' removed then
+	if test "$1" != "$SSPORT" # if $1 is not the same as $1 with '-' removed then
 	then
 		env ss "$@" 
 		# run normal ss command if "-" is first argument or
@@ -54,17 +54,17 @@ ss () {
 		# test to see if there are any other arguments, the old $2 is now $1
 		if test -z "$1" # if $1 is null
 		then 
-			echo "Using SSOPT=\"${SSOPT}\"" # Use the ss option default variable set at above
-			echo "Using SSSTATE=\"${SSSTATE}\"" # Use the ss state default variable set above
-			echo -e "Executing: env ss $SSOPT $SSSTATE \\( sport = :$A1 or dport = :$A1 \\)"
-			env ss $SSOPT $SSSTATE \( sport = :$A1 or dport = :$A1 \) # execute override
+			echo -n "ss() function: Using SSOPT=\"${SSOPT}\"" # Use the ss option default variable set at above
+			echo " SSSTATE=\"${SSSTATE}\ and SSPORT=\"${SSPORT}\"" # Use the ss state default variable set above
+			echo -e "env ss $SSOPT $SSSTATE \\( sport = :$SSPORT or dport = :$SSPORT \\)"
+			env ss $SSOPT $SSSTATE \( sport = :$SSPORT or dport = :$SSPORT \) # execute override
 		else
-			echo -e "Executing: env ss $@ \\( sport = :$A1 or dport = :$A1 \\)"
-			env ss $@ \( sport = :$A1 or dport = :$A1 \) # execute override
+			echo -e "Executing: env ss $@ \\( sport = :$SSPORT or dport = :$SSPORT \\)"
+			env ss $@ \( sport = :$SSPORT or dport = :$SSPORT \) # execute override
 		fi
 		# if the first argument is not an option or the word "state" 
 		# then run ss command with the arguments or options following the 
 		# first argument using the first argument as the source or destination port
-		# to match with "( sport = :$A1 or dport = :$A1 )"
+		# to match with "( sport = :$SSPORT or dport = :$SSPORT )"
 	fi
 }

@@ -45,39 +45,43 @@ UNCONN 0       0           127.0.0.53%lo:53            0.0.0.0:*      uid:101 in
 </pre>
 
 ## Disabling the Function
-If you have sourced the ss function into your environment, it should be visible by running set, and paging through the output.
+If you have sourced the ss function into your environment, it should be visible by running set, and paging through the output. You can set at least the first 20 lines of the ss function with:
 
-* set | grep -A ^ss
+* set | grep -A20 ^ss
 
 To disable the function you can unset the name of the function:
 
 * unset ss
 
 ## Example of Enabling and Disabling ss Function
-<pre><font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ source ss.fun2
-<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ set | grep -A 20 ^ss
-<font color="#EF2929"><b>ss</b></font> () 
+<pre><font color="#EF2929"><b>ss</b></font> () 
 { 
+    if test -z &quot;$SSOPT&quot;; then
+        SSOPT=&quot;-a&quot;;
+    fi;
     if test -z &quot;$1&quot;; then
-        env ss;
+        env <font color="#EF2929"><b>ss</b></font>;
         return 0;
     fi;
     A1=$(echo &quot;$1&quot; | tr -d &apos;-&apos;);
     if test &quot;$1&quot; != &quot;$A1&quot;; then
-        env ss &quot;$@&quot;;
+        env <font color="#EF2929"><b>ss</b></font> &quot;$@&quot;;
         return 0;
     else
         if test &quot;$1&quot; == &quot;state&quot;; then
-            env ss &quot;$@&quot;;
+            env <font color="#EF2929"><b>ss</b></font> &quot;$@&quot;;
             return 0;
         else
             shift;
-            env ss &quot;$@&quot; &quot;( sport = :$A1 or dport = :$A1 )&quot;;
+            if test -z &quot;$@&quot;; then
+                echo -e &quot;Executing: env <font color="#EF2929"><b>ss</b></font> $SSOPT \\( sport = :$A1 or dport = :$A1 \\)&quot;;
+                env <font color="#EF2929"><b>ss</b></font> &quot;$SSOPT&quot; &quot;\( sport = :$A1 or dport = :$A1 \)&quot;;
+            else
+                echo -e &quot;Executing: env <font color="#EF2929"><b>ss</b></font> $@ \\( sport = :$A1 or dport = :$A1 \\)&quot;;
+                env <font color="#EF2929"><b>ss</b></font> &quot;$@&quot; &quot;\( sport = :$A1 or dport = :$A1 \)&quot;;
+            fi;
         fi;
     fi
 }
-<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ 
-<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ unset ss
-<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ set | grep -A 20 ^ss
 </pre>
 

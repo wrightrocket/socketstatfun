@@ -45,9 +45,9 @@ UNCONN 0       0           127.0.0.53%lo:53            0.0.0.0:*      uid:101 in
 </pre>
 
 ## Disabling the Function
-If you have sourced the ss function into your environment, it should be visible by running set, and paging through the output. You can set at least the first 20 lines of the ss function with:
+If you have sourced the ss function into your environment, it should be visible by running set, and paging through the output. You can see if the function is active with:
 
-* set | grep -A20 ^ss
+* type ss
 
 To disable the function you can unset the name of the function:
 

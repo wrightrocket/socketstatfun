@@ -17,8 +17,18 @@
 #   	ss 22 state established
 #
 ss () {
+	if ! test -n "$SSOPT"
+	then # if the SSOPTDEF variable is not set assign the follow value
+		SSOPT="-a" # default options when using a naked port filter
+	fi
+
+	if ! test -n "$SSSTATE"
+	then # if the SSSTATEDEF variable is not set assign the follow value
+		SSSTATE="state all" # default state when using a naked port filter
+	fi
+
 	if test -z "$1"
-	then
+	then # If there is no arguments provided then do not override
 		env ss
 		# execute naked ss command
 		return 0
@@ -40,8 +50,18 @@ ss () {
 	else
 		shift
 		# drop off $1 the first argument by shifting arguments to the left 
-		echo 'Executing: env ss' "$@" '\"(' sport = :$A1 or dport = :$A1 ')\"'
-		env ss "$@" "( sport = :$A1 or dport = :$A1 )" # execute override
+		
+		# test to see if there are any other arguments, the old $2 is now $1
+		if test -z "$1" # if $1 is null
+		then 
+			echo "Using SSOPT=\"${SSOPT}\"" # Use the ss option default variable set at above
+			echo "Using SSSTATE=\"${SSSTATE}\"" # Use the ss state default variable set above
+			echo -e "Executing: env ss $SSOPT $SSSTATE \\( sport = :$A1 or dport = :$A1 \\)"
+			env ss $SSOPT $SSSTATE \( sport = :$A1 or dport = :$A1 \) # execute override
+		else
+			echo -e "Executing: env ss $@ \\( sport = :$A1 or dport = :$A1 \\)"
+			env ss $@ \( sport = :$A1 or dport = :$A1 \) # execute override
+		fi
 		# if the first argument is not an option or the word "state" 
 		# then run ss command with the arguments or options following the 
 		# first argument using the first argument as the source or destination port

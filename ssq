@@ -1,0 +1,12 @@
+unset ss
+set -x
+set -e
+. ss.fun
+ss 22 2>&1 | less
+
+ss 22 state established 2>&1 | less
+
+ss 53 -ulpne  2>&1 | less
+
+ss 53 -ul state all 2>&1 | less
+

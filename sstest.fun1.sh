@@ -1,10 +1,7 @@
-#!/usr/bin/env bash
-set -e
-source ss.fun
-ss
-ss 22
-ss state established
-ss 80 -t
-ss 53 -ulpn
-ss 22 -tlpen state established
-
+set -e # exit on error
+ ss -t -a
+# ss -t -a -Z # SeLinux failed
+ ss -u -a
+ ss -o state established '( dport = :ssh or sport = :ssh )'
+# ss -x src /tmp/.X11-unix/* # Failed for ordinary user
+ ss -o state fin-wait-1 '( sport = :http or sport = :https )'

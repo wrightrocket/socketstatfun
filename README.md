@@ -1,11 +1,13 @@
 # socketstatfun
 
-* Using a ss function to override /bin/ss to filter by ports easily
+* Using a ss function to override the ss command to filter by ports easily
 
-This function can be used with a Linux shell in the Bourne family to override /bin/ss for port filtering.
+This function can be used with a Linux shell in the Bourne family to override what is typically /bin/ss for port filtering.
 
-If the first argument to a ss command is a number, then this function will filter for that number as a port number. 
-It will display the information for that port number. Options and state filters are allowed to follow the port number.
+If the first argument after ss is an option or a state filter, then the ss function will not override the "env ss" command.
+
+If the first argument to a ss command is a number, then this ss function will filter for that port number and display the
+information for both source and destination. Normal ss options and state filters can follow the port number.
 
 ## To use this function, clone the repository:
 

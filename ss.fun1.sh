@@ -55,7 +55,7 @@ ss () {
 		if test -z "$1" # if $1 is null
 		then 
 			echo -n "ss() function: Using SSOPT=\"${SSOPT}\"" # Use the ss option default variable set at above
-			echo " SSSTATE=\"${SSSTATE}\ and SSPORT=\"${SSPORT}\"" # Use the ss state default variable set above
+			echo " SSSTATE=\"${SSSTATE}\" and SSPORT=\"${SSPORT}\"" # Use the ss state default variable set above
 			echo -e "env ss $SSOPT $SSSTATE \\( sport = :$SSPORT or dport = :$SSPORT \\)"
 			env ss $SSOPT $SSSTATE \( sport = :$SSPORT or dport = :$SSPORT \) # execute override
 		else

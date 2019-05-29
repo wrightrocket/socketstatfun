@@ -19,7 +19,8 @@
 ss () {
 	if ! test -n "$SSOPT"
 	then # if the SSOPTDEF variable is not set assign the follow value
-		SSOPT="-map" # default options when using a naked port filter
+		#SSOPT="-map" # default options show memory, all, and process info
+		SSOPT="-ap" # default options show all and process info
 	fi
 
 	if ! test -n "$SSSTATE"

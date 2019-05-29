@@ -25,6 +25,15 @@ information for both source and destination. Normal ss options and state filters
 
 * source ss.fun
 
+If you have sourced the ss function before, then it is recommended to unset the ss function and SSOPT variable before sourcing the ss function again:
+
+* unset SSOPT
+
+* unset ss
+
+* source ss.fun
+
+
 ## Examples using the ss function :
 <pre><font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ ss 22 -tlpn state all
 State     Recv-Q     Send-Q            Local Address:Port            Peer Address:Port      
@@ -52,48 +61,10 @@ If you have sourced the ss function into your environment, it should be visible 
 To disable the function you can unset the name of the function:
 
 * unset ss
+* unset SSOPT 
 
-## Example of Enabling and Disabling ss Function
-<pre><font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ source ss.fun
-<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ type ss
-ss is a function
-ss () 
-{ 
-    if ! test -n &quot;$SSOPT&quot;; then
-        SSOPT=&quot;-a&quot;;
-    fi;
-    if ! test -n &quot;$SSSTATE&quot;; then
-        SSSTATE=&quot;state all&quot;;
-    fi;
-    if test -z &quot;$1&quot;; then
-        env ss;
-        return 0;
-    fi;
-    A1=$(echo &quot;$1&quot; | tr -d &apos;-&apos;);
-    if test &quot;$1&quot; != &quot;$A1&quot;; then
-        env ss &quot;$@&quot;;
-        return 0;
-    else
-        if test &quot;$1&quot; == &quot;state&quot;; then
-            env ss &quot;$@&quot;;
-            return 0;
-        else
-            shift;
-            if test -z &quot;$1&quot;; then
-                echo &quot;Using SSOPT=\&quot;${SSOPT}\&quot;&quot;;
-                echo &quot;Using SSSTATE=\&quot;${SSSTATE}\&quot;&quot;;
-                echo -e &quot;Executing: env ss $SSOPT $SSSTATE \\( sport = :$A1 or dport = :$A1 \\)&quot;;
-                env ss $SSOPT $SSSTATE \( sport = :$A1 or dport = :$A1 \);
-            else
-                echo -e &quot;Executing: env ss $@ \\( sport = :$A1 or dport = :$A1 \\)&quot;;
-                env ss $@ \( sport = :$A1 or dport = :$A1 \);
-            fi;
-        fi;
-    fi
-}
-<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ unset ss
-<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ type ss
-ss is /bin/ss
-<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ 
-</pre>
+### unset SSOPT so it will not override the default value of the ss function to be loaded in the future.
+
+
+
 

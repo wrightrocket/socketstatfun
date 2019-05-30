@@ -35,7 +35,7 @@ If you have sourced the ss function before, then it is recommended to unset the 
 
 
 ## Examples using the ss function :
-<pre><font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ ss 22 -tlpn state all
+<pre><font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ ss ssh -tlpn state all
 State     Recv-Q     Send-Q            Local Address:Port            Peer Address:Port      
 LISTEN    0          128                     0.0.0.0:22                   0.0.0.0:*         
 LISTEN    0          128                        [::]:22                      [::]:*         
@@ -44,7 +44,7 @@ ESTAB     0          0                         [::1]:59578                  [::1
 <font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ ss 80 -tl
 State      Recv-Q      Send-Q            Local Address:Port           Peer Address:Port     
 LISTEN     0           128                           *:http                      *:*        
-<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ ss 80 -tln
+<font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ ss http -tln
 State      Recv-Q      Send-Q            Local Address:Port           Peer Address:Port     
 LISTEN     0           128                           *:80                        *:*        
 <font color="#8AE234"><b>keith@bionic</b></font>:<font color="#729FCF"><b>~/bin/socketstatfun</b></font>$ ss 53 -ulpen state all

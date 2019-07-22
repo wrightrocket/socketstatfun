@@ -32,7 +32,7 @@ ss () {
 	then # If there is no arguments provided then do not override
 		env ss
 		# execute naked ss command
-		return 0
+		return $?
 		# return from function if there is no arguments
 	fi
 
@@ -42,12 +42,12 @@ ss () {
 	then
 		env ss "$@" 
 		# run normal ss command if "-" is first argument or
-		return 0
+		return $?
 	elif test "$1" == "state"
 	then
 		env ss "$@"
 		# run normal ss command if begins with "state"
-		return 0
+		return $?
 	else
 		shift
 		# drop off $1 the first argument by shifting arguments to the left 
@@ -59,9 +59,11 @@ ss () {
 			echo " SS_STATE=\"${SS_STATE}\" and SS_PORT=\"${SS_PORT}\" and executing:" # Use the ss state default variable set above
 			echo -e "env ss $SS_OPT $SS_STATE \\( sport = :$SS_PORT or dport = :$SS_PORT \\)"
 			env ss $SS_OPT $SS_STATE \( sport = :$SS_PORT or dport = :$SS_PORT \) # execute override
+			return $?
 		else
 			echo -e "ss() function executing:\nenv ss $@ \\( sport = :$SS_PORT or dport = :$SS_PORT \\)"
 			env ss $@ \( sport = :$SS_PORT or dport = :$SS_PORT \) # execute override
+			return $?
 		fi
 		# if the first argument is not an option or the word "state" 
 		# then run ss command with the arguments or options following the 

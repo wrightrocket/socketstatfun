@@ -19,12 +19,6 @@ information for both source and destination. Normal ss options and state filters
 
 ## Source the function named ss.fun using either the . or source command:
 
-* . ss.fun
- 
-* or 
-
-* source ss.fun
-
 If you have sourced the ss function before, then it is recommended to unset the ss function and SS_* variables before sourcing the ss function again:
 
 * unset SS_OPT
@@ -32,10 +26,11 @@ If you have sourced the ss function before, then it is recommended to unset the 
 * unset SS_PORT
 
 * unset ss
-
-* source ss.fun <br>
-or <br>
 * . ss.fun
+ 
+* or 
+
+* source ss.fun
 
 
 ## Examples using the ss function :

@@ -28,10 +28,14 @@ information for both source and destination. Normal ss options and state filters
 If you have sourced the ss function before, then it is recommended to unset the ss function and SS_OPT variable before sourcing the ss function again:
 
 * unset SS_OPT
+* unset SS_STATE
+* unset SS_PORT
 
 * unset ss
 
-* source ss.fun
+* source ss.fun 
+or 
+* . ss.fun
 
 
 ## Examples using the ss function :
@@ -117,13 +121,15 @@ If you have sourced the ss function into your environment, it should be visible 
 To disable the function you can unset the name of the function:
 
 * unset ss
+
+## unset SS_* Variables
+If you unset SS_OPT, SS_STATE, and SS_PORT, they will not override the default value of the ss function to be loaded in the future.
+
 * unset SS_OPT 
+* unset SS_STATE
+* unset SS_PORT
 
-### unset SS_OPT so it will not override the default value of the ss function to be loaded in the future.
 
-Two other variables can be used:
-SS_PORT for a default port to filter
-SS_STATE for a default state to filter
 
 
 

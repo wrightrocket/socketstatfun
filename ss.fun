@@ -7,7 +7,7 @@
 # Examples: 
 #   Not overriding:
 #   	ss -tln
-#   	ss state all
+#   	ss -u state all
 #   Overriding: 
 #   	ss 22
 #   	ss ssh

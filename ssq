@@ -1,10 +1,12 @@
 #!/usr/bin/env bash 
 # Socket Stats Quick 
 # - quick test
+echo 'Executing:  unset ss'
 unset ss
 # set -x # enable for debugging
 set -e # exit on error
 #set -x # show command line
+echo 'Executing:  . ss.fun'
 . ss.fun
 # Not overriding:
 echo 'Executing:  ss -tl'

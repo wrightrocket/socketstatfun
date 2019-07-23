@@ -33,13 +33,16 @@ If you have sourced the ss function before, then it is recommended to unset the 
 
 * unset ss
 
-* source ss.fun 
-or 
+* source ss.fun <br>
+or <br>
 * . ss.fun
 
 
 ## Examples using the ss function :
 <pre>[keithwright@ryzen5 socketstatfun]$ ./ssq
+Executing:  unset SS_OPT
+Executing:  unset SS_STATE
+Executing:  unset SS_PORT
 Executing:  unset ss
 Executing:  . ss.fun
 Executing:  ss -tl
@@ -111,7 +114,9 @@ ss() function executing:
 env ss -ul state all \( sport = :53 or dport = :53 \)
 State         Recv-Q         Send-Q                 Local Address:Port                   Peer Address:Port        
 UNCONN        0              0                      192.168.122.1:domain                      0.0.0.0:*           
-UNCONN        0              0                      127.0.0.53%lo:domain                      0.0.0.0:*    </pre>
+UNCONN        0              0                      127.0.0.53%lo:domain                      0.0.0.0:*           
+
+</pre>
 
 ## Disabling the Function
 If you have sourced the ss function into your environment, it should be visible by running set, and paging through the output. You can see if the function is active with:

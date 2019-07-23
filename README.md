@@ -25,7 +25,7 @@ information for both source and destination. Normal ss options and state filters
 
 * source ss.fun
 
-If you have sourced the ss function before, then it is recommended to unset the ss function and SS_OPT variable before sourcing the ss function again:
+If you have sourced the ss function before, then it is recommended to unset the ss function and SS_* variables before sourcing the ss function again:
 
 * unset SS_OPT
 * unset SS_STATE

@@ -1,13 +1,27 @@
-# unset ss
+#!/usr/bin/env bash 
+# Socket Stats Quick 
+# - quick test
+unset ss
 # set -x # enable for debugging
 set -e # exit on error
+#set -x # show command line
 . ss.fun
-ss ssh 2>&1 | more
+# Not overriding:
+echo 'Executing:  ss -tl'
+ss -tl
+echo 'Executing:  ss -u state closed'
+ss -u state closed
+# Overriding:
+echo 'Executing:  ss ssh'
+ss ssh 
 echo
-ss 22 state established 2>&1 | more
+echo 'Executing:  ss 22 state established'
+ss 22 state established
 echo
-ss domain -ulpne  2>&1 | more
+echo 'Executing:  ss domain -ulpne'
+ss domain -ulpne
 echo
-ss 53 -ul state all 2>&1 | more
+echo 'Executing:  ss 53 -ul state all'
+ss 53 -ul state all
 echo
 
